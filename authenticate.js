@@ -20,10 +20,10 @@ exports.getToken = (user) => {
 };
 
 var opts = {};
-opts.jwtFormRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = config.secretKey;
 
-exports.jwtPassport = passpor.use(new JwtStrategy(opts,
+exports.jwtPassport = passport.use(new JwtStrategy(opts,
     (jwt_payload, done) => {
         console.log("Jwt Payload: ", this.jwt_payload);
         User.findOne({_id: jwt_payload._id}, (err, user) => {
